@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertArrayEquals;
 
 public class MDLTest {
 
@@ -34,5 +35,17 @@ public class MDLTest {
         final Optional<Integer> barrier = mdl.barrier(data, 10.0);
 
         assertTrue("Barrier should be empty", !barrier.isPresent());
+    }
+
+    @Test
+    public void levels() {
+
+        final Double[] data = new Double[] {1.0, 2.0, 2.0, 3.0, 4.0, 5.0,
+                5.0, 5.0, 5.0, 6.0};
+
+        final MDL mdl = new MDL();
+
+        final Double[] levels = mdl.levels(data);
+        assertArrayEquals("Levels should match", new Double[] {1.0, 2.0, 3.0, 4.0, 5.0, 6.0}, levels);
     }
 }
