@@ -48,4 +48,16 @@ public class MDLTest {
         final Double[] levels = mdl.levels(data);
         assertArrayEquals("Levels should match", new Double[] {1.0, 2.0, 3.0, 4.0, 5.0, 6.0}, levels);
     }
+
+    @Test
+    public void targetTable() {
+
+        final Double[] data = new Double[] {1.0, 2.0, 2.0, 3.0, 4.0, 5.0,
+                5.0, 5.0, 5.0, 6.0};
+
+        final MDL mdl = new MDL();
+
+        final Integer[] targets = mdl.targetTable(data);
+        assertArrayEquals("Targets should match", new Integer[] {1,2,1,1,4,1}, targets);
+    }
 }
